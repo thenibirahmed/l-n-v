@@ -14,4 +14,11 @@ class BlogController extends Controller
             'post' => Blog::latest()->first(),
         ]);
     }
+
+    public function getAllPosts(): JsonResponse
+    {
+        return response()->json([
+            'posts' => Blog::with('category')->get(),
+        ]);
+    }
 }

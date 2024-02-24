@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/categories', [CategoryController::class, 'getAllCategories']);
 
 Route::get('/get-latest-post', [BlogController::class, 'getLatestPost']);
+
+Route::get('/posts', [BlogController::class, 'getAllPosts']);
