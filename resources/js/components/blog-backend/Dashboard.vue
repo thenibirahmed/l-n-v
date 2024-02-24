@@ -1,7 +1,7 @@
 <template>
     <Backend>
         <h2>All Posts</h2>
-        <router-link to="/new-post" class="btn btn-primary my-3">Add New Post</router-link>
+        <router-link to="/add-new-post" class="btn btn-primary my-3">Add New Post</router-link>
         <div class="table-responsive small">
             <table class="table table-striped table-sm">
             <thead>
