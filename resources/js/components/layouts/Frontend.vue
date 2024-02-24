@@ -1,6 +1,6 @@
 <template>
+    <link rel="stylesheet" href="assets/dist/css/blog/blog.css">
     <body>
-
         <Header />
 
             <slot />

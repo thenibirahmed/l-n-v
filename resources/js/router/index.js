@@ -1,11 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Frontend from "../components/layouts/Frontend.vue";
 import NotFound from "../components/NotFound.vue";
 import Blogs from "../components/blog-frontend/Blogs.vue";
-import Backend from "../components/layouts/Backend.vue";
-
-
+import Dashboard from "../components/blog-backend/Dashboard.vue";
 
 const routes = [
     {
@@ -14,7 +11,7 @@ const routes = [
     },
     {
         path: "/admin",
-        component: () => Backend,
+        component: () => Dashboard,
     },
     {
         path: "/:pathMatch(.*)*",

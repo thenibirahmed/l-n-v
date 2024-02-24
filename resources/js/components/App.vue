@@ -15,10 +15,6 @@
             <!-- Custom styles for this template -->
             <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-
-            <!-- Custom styles for this template -->
-            <link rel="stylesheet" href="assets/dist/css/blog/blog.css">
-            <link rel="stylesheet" href="assets/dist/css/dashboard/dashboard.css">
         </head>
         <router-view />
     </html>
