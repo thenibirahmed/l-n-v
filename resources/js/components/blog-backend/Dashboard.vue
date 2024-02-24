@@ -65,12 +65,12 @@
         }
 
         router.push({
-                query: {
-                    ...route.query,
-                    page: newValue
-                }
-            })
-            .catch(() => {});
+            query: {
+                ...route.query,
+                page: newValue
+            }
+        })
+        .catch(() => {});
     });
 
 </script>
