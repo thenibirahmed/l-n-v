@@ -6,19 +6,17 @@
             <thead>
                 <tr>
                 <th scope="col">#</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+                <th scope="col">Category</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1,001</td>
-                    <td>random</td>
-                    <td>data</td>
-                    <td>placeholder</td>
-                    <td>text</td>
+                <tr v-for="post in posts" :key="post.id">
+                    <td># {{ post.id }}</td>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.title }}</td>
+                    <td v-if="post.category">{{ post.category.name }}</td>
                 </tr>
             </tbody>
             </table>
@@ -29,5 +27,24 @@
 
 <script setup>
     import Backend from '../layouts/Backend.vue'
+    import { ref, onMounted } from 'vue'
+
+    let posts = ref([])
+
+    const fetchPosts = async () => {
+        const response = await axios.get('/api/posts')
+
+        if(response.status !== 200){
+            console.error('Error fetching posts')
+            return
+        }
+
+        posts.value = response.data.posts
+    }
+
+    onMounted(() => {
+        fetchPosts()
+    })
+
 </script>
 

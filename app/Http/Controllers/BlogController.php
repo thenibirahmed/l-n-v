@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function getAllPosts(): JsonResponse
     {
         return response()->json([
-            'posts' => Blog::with('category')->get(),
+            'posts' => Blog::with('category')->latest()->get(),
         ]);
     }
 }
