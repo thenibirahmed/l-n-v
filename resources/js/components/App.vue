@@ -7,20 +7,18 @@
             <meta name="description" content="">
             <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
             <meta name="generator" content="Hugo 0.122.0">
-            <title>Blog Template · Bootstrap v5.3</title>
-
-            <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/">
-
-
+            <title>Nibirs Blog</title>
 
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-            <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
             <!-- Custom styles for this template -->
             <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
             <!-- Custom styles for this template -->
-            <link href="../assets/dist/css/blog/blog.css" rel="stylesheet">
+            <link rel="stylesheet" href="assets/dist/css/blog/blog.css">
+            <link rel="stylesheet" href="assets/dist/css/dashboard/dashboard.css">
         </head>
         <router-view />
     </html>
