@@ -1,6 +1,6 @@
 <template>
     <Backend>
-        <h2>Section title</h2>
+        <h2>All Posts</h2>
         <div class="table-responsive small">
             <table class="table table-striped table-sm">
             <thead>
