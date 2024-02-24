@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <tr v-for="post in posts" :key="post.id">
-                    <td># {{ post.id }}</td>
+                    <td>#{{ post.id }}</td>
                     <td>{{ post.title }}</td>
                     <td>{{ post.title }}</td>
                     <td v-if="post.category">{{ post.category.name }}</td>
@@ -33,7 +33,7 @@
 
     const fetchPosts = async () => {
         const response = await axios.get('/api/posts')
-
+        console.log(response)
         if(response.status !== 200){
             console.error('Error fetching posts')
             return
