@@ -32,25 +32,45 @@
 
 <script setup>
     import Backend from '../layouts/Backend.vue'
-    import { ref, onMounted } from 'vue'
+    import { ref, onMounted, watch } from 'vue'
     import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+    import { useRoute, useRouter } from 'vue-router';
+
+    const route = useRoute()
+    const router = useRouter()
 
     let posts = ref([])
+    let currentPage = ref([])
 
     const fetchPosts = async (page = 1) => {
         const response = await axios.get(`/api/posts?page=${page}`)
-        console.log(response.data.posts.data)
+
         if(response.status !== 200){
             console.error('Error fetching posts')
             return
         }
 
+        currentPage.value = page
         posts.value = response.data.posts
     }
 
     onMounted(() => {
         fetchPosts()
     })
+
+    watch(() => currentPage.value, (newValue, oldValue) => {
+        if( currentPage.value === 1 ){
+            return
+        }
+
+        router.push({
+                query: {
+                    ...route.query,
+                    page: newValue
+                }
+            })
+            .catch(() => {});
+    });
 
 </script>
 
