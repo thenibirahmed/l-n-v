@@ -10,6 +10,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Category</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,10 @@
                     <td>{{ post.title }}</td>
                     <td>{{ post.title }}</td>
                     <td v-if="post.category">{{ post.category.name }}</td>
+                    <td>
+                        <a href="#">Edit</a> |
+                        <a href="" @click.prevent="deletePost(post.id)" class="text-danger">Delete</a>
+                    </td>
                 </tr>
             </tbody>
             </table>
@@ -53,6 +58,14 @@
 
         currentPage.value = page
         posts.value = response.data.posts
+    }
+
+    const deletePost = async (id) => {
+        if( ! window.confirm('Are you sure you want to delete this post?') ){
+            return
+        }
+
+        console.log('Deleting post with id: ', id)
     }
 
     onMounted(() => {
