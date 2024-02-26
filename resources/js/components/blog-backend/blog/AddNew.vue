@@ -37,8 +37,10 @@
 import Backend from '@/components/layouts/Backend.vue'
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from "vue-toastification";
 
 const router = useRouter()
+const toast = useToast()
 
 let post = ref({
     title: '',
@@ -67,7 +69,7 @@ const addNewPost = async () => {
                 console.error('Error adding new post')
                 return
             }
-
+            toast.success("Post added successfully");
             router.push('/admin')
         })
         .catch(error => {

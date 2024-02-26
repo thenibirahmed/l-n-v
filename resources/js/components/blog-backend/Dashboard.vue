@@ -41,9 +41,11 @@
     import { ref, onMounted, watch } from 'vue'
     import { Bootstrap5Pagination } from 'laravel-vue-pagination';
     import { useRoute, useRouter } from 'vue-router';
+    import { useToast } from "vue-toastification";
 
     const route = useRoute()
     const router = useRouter()
+    const toast = useToast()
 
     let posts = ref([])
     let currentPage = ref([])
@@ -68,6 +70,7 @@
         await axios.delete(`/api/post/${id}`)
             .then(response => {
                 posts.value.data = posts.value.data.filter(post => post.id !== id)
+                toast.success('Post deleted successfully')
             })
             .catch(error => {
                 console.error('Error deleting post: ', error)

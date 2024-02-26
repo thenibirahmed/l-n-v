@@ -36,8 +36,10 @@
     import Backend from '@/components/layouts/Backend.vue'
     import { ref, onMounted, defineProps } from 'vue'
     import { useRoute } from 'vue-router'
+    import { useToast } from "vue-toastification";
 
     const route = useRoute()
+    const toast = useToast()
 
     let post = ref({
         title: '',
@@ -84,7 +86,7 @@
                 }
 
                 post.value = response.data.post
-                console.log('Post updated: ', post.value)
+                toast.success("Post updated successfully");
             })
             .catch(error => {
                 errors.value = error.response.data.errors
