@@ -1,31 +1,31 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import NotFound from "../components/NotFound.vue";
-import Blogs from "../components/blog-frontend/Blogs.vue";
-import Dashboard from "../components/blog-backend/Dashboard.vue";
-import AddNew from "@/components/blog-backend/blog/AddNew.vue"
-import EditBlog from "@/components/blog-backend/blog/EditBlog.vue"
+const Blogs = () => import("../components/blog-frontend/Blogs.vue");
+const Dashboard = () => import("../components/blog-backend/Dashboard.vue");
+const AddNew = () => import("@/components/blog-backend/blog/AddNew.vue");
+const EditBlog = () => import("@/components/blog-backend/blog/EditBlog.vue");
 
 const routes = [
     {
         path: "/",
-        component: () => Blogs,
+        component: Blogs,
     },
     {
         path: "/admin",
-        component: () => Dashboard,
+        component: Dashboard,
     },
     {
         path: "/add-new-post",
-        component: () => AddNew,
+        component: AddNew,
     },
     {
         path: "/edit-post/:id",
-        component: () => EditBlog,
+        component: EditBlog,
     },
     {
         path: "/:pathMatch(.*)*",
-        component: () => NotFound,
+        component: NotFound,
     },
 ]
 
