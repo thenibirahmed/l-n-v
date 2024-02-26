@@ -45,7 +45,7 @@
             return
         }
 
-        posts.value = response.data.posts
+        posts.value = response.data.posts.data
     }
 
     onMounted(() => {

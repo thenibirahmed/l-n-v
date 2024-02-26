@@ -17,7 +17,7 @@
                 <tr v-for="post in posts.data" :key="post.id">
                     <td>#{{ post.id }}</td>
                     <td>{{ post.title }}</td>
-                    <td>{{ post.title }}</td>
+                    <td>{{ post.content.split(' ').slice(0,8).join(' ') + '...' }}</td>
                     <td v-if="post.category">{{ post.category.name }}</td>
                     <td>
                         <router-link :to="'/edit-post/' + post.id">Edit</router-link> |
