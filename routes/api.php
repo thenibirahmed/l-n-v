@@ -25,3 +25,5 @@ Route::get('/categories', [CategoryController::class, 'getAllCategories']);
 Route::get('/get-latest-post', [BlogController::class, 'getLatestPost']);
 
 Route::get('/posts', [BlogController::class, 'getAllPosts']);
+
+Route::post('/posts', [BlogController::class, 'addNewPost']);

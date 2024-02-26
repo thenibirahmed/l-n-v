@@ -21,4 +21,24 @@ class BlogController extends Controller
             'posts' => Blog::with('category')->latest()->paginate(50),
         ]);
     }
+
+    public function addNewPost(Request $request): JsonResponse
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $post = Blog::create([
+            'user_id' => 1,
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+        ]);
+
+        return response()->json([
+            'post' => $post,
+        ]);
+    }
 }
