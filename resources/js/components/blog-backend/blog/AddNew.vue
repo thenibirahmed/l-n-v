@@ -7,15 +7,15 @@
             <form>
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" v-model="title">
+                    <input type="text" class="form-control" id="title" v-model="post.title">
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" id="content" v-model="content"></textarea>
+                    <textarea class="form-control" id="content" v-model="post.content"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <select class="form-select" id="category" v-model="category">
+                    <select class="form-select" id="category" v-model="post.category_id">
                         <option v-for="category in categories" :key="category.id" :value="category.id">
                             {{ category.name }}
                         </option>
@@ -31,9 +31,11 @@
 import Backend from '@/components/layouts/Backend.vue'
 import { ref, onMounted } from 'vue'
 
-let title = ref('')
-let content = ref('')
-let category = ref('')
+let post = ref({
+    title: '',
+    content: '',
+    category_id: ''
+})
 let categories = ref([])
 let errors = ref([])
 
@@ -46,6 +48,7 @@ const fetchCategories = async () => {
     }
 
     categories.value = response.data.categories
+    post.value.category_id = categories.value[0] ? categories.value[0].id : null
 }
 
 onMounted(() => {
