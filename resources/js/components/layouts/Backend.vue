@@ -1,5 +1,5 @@
 <template>
-    <link rel="stylesheet" href="assets/dist/css/dashboard/dashboard.css">
+    <link rel="stylesheet" href="/assets/dist/css/dashboard/dashboard.css">
     <body>
         <Icons />
         <Header />

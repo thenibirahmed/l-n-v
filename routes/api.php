@@ -27,3 +27,7 @@ Route::get('/get-latest-post', [BlogController::class, 'getLatestPost']);
 Route::get('/posts', [BlogController::class, 'getAllPosts']);
 
 Route::post('/posts', [BlogController::class, 'addNewPost']);
+
+Route::get('/post/{id}', [BlogController::class, 'getSinglePosts']);
+
+Route::patch('/post/{id}', [BlogController::class, 'updatePost']);

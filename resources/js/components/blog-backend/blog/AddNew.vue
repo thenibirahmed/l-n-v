@@ -24,6 +24,8 @@
                             {{ category.name }}
                         </option>
                     </select>
+                    <span class="text-danger text-sm mb-3" v-if="errors?.category_id">{{ errors.category_id[0] }}</span>
+
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

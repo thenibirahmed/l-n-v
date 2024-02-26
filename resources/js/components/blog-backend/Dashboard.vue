@@ -20,7 +20,7 @@
                     <td>{{ post.title }}</td>
                     <td v-if="post.category">{{ post.category.name }}</td>
                     <td>
-                        <a href="#">Edit</a> |
+                        <router-link :to="'/edit-post/' + post.id">Edit</router-link> |
                         <a href="" @click.prevent="deletePost(post.id)" class="text-danger">Delete</a>
                     </td>
                 </tr>
@@ -83,7 +83,9 @@
                 page: newValue
             }
         })
-        .catch(() => {});
+        .catch((error) => {
+            console.error('Error navigating to query param: ', error)
+        });
     });
 
 </script>

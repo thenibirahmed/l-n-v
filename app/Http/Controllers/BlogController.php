@@ -41,4 +41,36 @@ class BlogController extends Controller
             'post' => $post,
         ]);
     }
+
+    public function getSinglePosts($id): JsonResponse
+    {
+        return response()->json([
+            'post' => Blog::with('category')->find($id),
+        ]);
+    }
+
+    public function updatePost(Request $request, $id): JsonResponse
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $post = Blog::find($id);
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+        ]);
+
+        return response()->json([
+            'post' => [
+                'title' => $post->title,
+                'content' => $post->content,
+                'category_id' => $post->category_id,
+            ],
+        ]);
+    }
 }
