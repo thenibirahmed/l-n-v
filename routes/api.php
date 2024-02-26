@@ -31,3 +31,5 @@ Route::post('/posts', [BlogController::class, 'addNewPost']);
 Route::get('/post/{id}', [BlogController::class, 'getSinglePosts']);
 
 Route::patch('/post/{id}', [BlogController::class, 'updatePost']);
+
+Route::delete('/post/{id}', [BlogController::class, 'deletePost']);

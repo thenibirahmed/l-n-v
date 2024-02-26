@@ -73,4 +73,16 @@ class BlogController extends Controller
             ],
         ]);
     }
+
+    public function deletePost($id): JsonResponse
+    {
+        $post = Blog::find($id);
+
+        $post->delete();
+
+        return response()->json([
+            'deleted' => true,
+            'message' => 'Post deleted successfully',
+        ]);
+    }
 }

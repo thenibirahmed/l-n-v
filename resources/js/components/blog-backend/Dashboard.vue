@@ -65,7 +65,13 @@
             return
         }
 
-        console.log('Deleting post with id: ', id)
+        await axios.delete(`/api/post/${id}`)
+            .then(response => {
+                posts.value.data = posts.value.data.filter(post => post.id !== id)
+            })
+            .catch(error => {
+                console.error('Error deleting post: ', error)
+            })
     }
 
     onMounted(() => {
