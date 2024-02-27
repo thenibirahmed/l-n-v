@@ -20,7 +20,7 @@
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" v-model="existingCategory.name">
                             </div>
-                            <span class="text-danger text-sm mb-3" v-if="updateError?.name">{{ updateError.name[0] }}</span>
+                            <span class="text-danger text-sm mb-3" v-if="updateErrors?.name">{{ updateErrors.name[0] }}</span>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                         <button type="submit" @click="updateCategoryID = null" class="btn btn-danger mt-3">Cancel</button>
@@ -63,17 +63,17 @@
 
     const toast = useToast()
 
+    let categories = ref([])
+    let errors = ref([])
     let category = ref({
         name: ''
     })
-    let categories = ref([])
-    let errors = ref([])
-    let updateCategory = ref([])
 
+    let updateErrors = ref([])
+    let updateCategoryID = ref(null)
     let existingCategory = ref({
         name: ''
     })
-    let updateCategoryID = ref(null)
 
     onMounted(async () => {
         await fetchCategories()
@@ -105,6 +105,18 @@
             })
             .catch(error => {
                 errors.value = error.response.data.errors
+            })
+    }
+
+    const updateCategory = async () => {
+        await axios.patch(`/api/category/${updateCategoryID.value}`, existingCategory.value)
+            .then(response => {
+                updateCategoryID.value = null
+                updateErrors.value = []
+                toast.success('Category updated successfully')
+            })
+            .catch(error => {
+                updateErrors.value = error.response.data.errors
             })
     }
 
