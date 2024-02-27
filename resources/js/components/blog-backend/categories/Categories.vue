@@ -12,7 +12,21 @@
                         <span class="text-danger text-sm mb-3" v-if="errors?.name">{{ errors.name[0] }}</span>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+
+                    <div v-if="updateCategoryID !== null" class="update-form">
+                        <h3 class="mt-4">Update Category</h3>
+                        <form @submit.prevent="updateCategory">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" v-model="existingCategory.name">
+                            </div>
+                            <span class="text-danger text-sm mb-3" v-if="updateError?.name">{{ updateError.name[0] }}</span>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                        <button type="submit" @click="updateCategoryID = null" class="btn btn-danger mt-3">Cancel</button>
+                    </div>
                 </div>
+
                 <div class="col-md-8">
                     <div class="table-responsive small">
                         <table class="table table-striped table-sm">
@@ -28,7 +42,7 @@
                                     <td>#{{ category.id }}</td>
                                     <td>{{ category.name }}</td>
                                     <td>
-                                        <router-link :to="'/edit-category/' + category.id">Edit</router-link> |
+                                        <a href="" @click.prevent="editCategory(category.id)" class="text-primary">Edit</a> |
                                         <a href="" @click.prevent="deleteCategory(category.id)" class="text-danger">Delete</a>
                                     </td>
                                 </tr>
@@ -54,10 +68,21 @@
     })
     let categories = ref([])
     let errors = ref([])
+    let updateCategory = ref([])
+
+    let existingCategory = ref({
+        name: ''
+    })
+    let updateCategoryID = ref(null)
 
     onMounted(async () => {
         await fetchCategories()
     })
+
+    const editCategory = (id) => {
+        updateCategoryID.value = id
+        existingCategory.value = categories.value.find(category => category.id === id)
+    }
 
     const fetchCategories = async () => {
         const response = await axios.get('/api/categories')

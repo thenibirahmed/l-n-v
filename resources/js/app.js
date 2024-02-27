@@ -12,4 +12,7 @@ import router from './router';
 import '../../public/assets/js/color-modes.js';
 import '../../public/assets/dist/js/bootstrap.bundle.min.js';
 
-createApp(App).use(router).use(Toast).mount('#app');
+createApp(App)
+    .use(router)
+    .use(Toast,{transition: "Vue-Toastification__fade"})
+    .mount('#app');
