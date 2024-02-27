@@ -4,7 +4,7 @@
             <div class="row">
                 <h2 class="mt-2 mb-3">All Posts</h2>
                 <div class="col-md-4">
-                    <form>
+                    <form @submit.prevent="addNewCategory">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" v-model="category.name">

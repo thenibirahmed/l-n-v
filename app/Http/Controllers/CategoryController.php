@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function getAllCategories(): JsonResponse
     {
         return response()->json([
-            'categories' => Category::all(),
+            'categories' => Category::latest()->get(),
         ]);
     }
 
