@@ -8,17 +8,17 @@
             <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <router-link class="nav-link d-flex align-items-center gap-2 active" to="/admin">
+                        <router-link class="nav-link d-flex align-items-center gap-2" to="/admin">
                             <svg class="bi"><use xlink:href="#house-fill"/></svg>
                             Dashboard
                         </router-link>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2" href="#">
+                    <li class="nav-item">
+                        <router-link class="nav-link d-flex align-items-center gap-2" to="/all-categories">
                             <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                            Orders
-                        </a>
-                    </li> -->
+                            Categories
+                        </router-link>
+                    </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link d-flex align-items-center gap-2" href="#">
                             <svg class="bi"><use xlink:href="#cart"/></svg>
