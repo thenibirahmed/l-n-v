@@ -25,7 +25,12 @@
                         </option>
                     </select>
                     <span class="text-danger text-sm mb-3" v-if="errors?.category_id">{{ errors.category_id[0] }}</span>
+                </div>
 
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">Thumbnail</label>
+                    <input type="file" class="form-control" id="thumbnail" v-on:change="post.thumbnail = $event.target.files[0]">
+                    <span class="text-danger text-sm mb-3" v-if="errors?.thumbnail">{{ errors.thumbnail[0] }}</span>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -45,7 +50,8 @@ const toast = useToast()
 let post = ref({
     title: '',
     content: '',
-    category_id: ''
+    category_id: '',
+    thumbnail: null
 })
 let categories = ref([])
 let errors = ref([])
@@ -63,7 +69,18 @@ const fetchCategories = async () => {
 }
 
 const addNewPost = async () => {
-    await axios.post('/api/posts', post.value)
+
+    // handle file
+    let formData = new FormData()
+    formData.append('thumbnail', post.value.thumbnail)
+    formData.append('title', post.value.title)
+    formData.append('content', post.value.content)
+    formData.append('category_id', post.value.category_id)
+
+    await axios.post('/api/posts', post.value, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }})
         .then(response => {
             if(response.status !== 200){
                 console.error('Error adding new post')

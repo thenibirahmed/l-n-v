@@ -28,13 +28,19 @@ class BlogController extends Controller
             'title' => 'required',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id',
+            'thumbnail' => 'nullable|image',
         ]);
+
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail')->store('thumbnails');
+        }
 
         $post = Blog::create([
             'user_id' => 1,
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
+            'thumbnail' => $thumbnail ?? null,
         ]);
 
         return response()->json([

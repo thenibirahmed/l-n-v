@@ -15,6 +15,7 @@ class Blog extends Model
         'content',
         'user_id',
         'category_id',
+        'thumbnail',
     ];
 
     public function category(): BelongsTo
