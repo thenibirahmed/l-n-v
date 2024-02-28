@@ -6,11 +6,21 @@ const Dashboard = () => import("../components/blog-backend/Dashboard.vue");
 const AddNew = () => import("@/components/blog-backend/blog/AddNew.vue");
 const EditBlog = () => import("@/components/blog-backend/blog/EditBlog.vue");
 const Categories = () => import("@/components/blog-backend/categories/Categories.vue");
+const Login = () => import("@/components/auth/Login.vue");
+const Registration = () => import("@/components/auth/Registration.vue");
 
 const routes = [
     {
         path: "/",
         component: Blogs,
+    },
+    {
+        path: "/log-in",
+        component: Login,
+    },
+    {
+        path: "/registration",
+        component: Registration,
     },
     {
         path: "/admin",
