@@ -15,7 +15,7 @@ const routes = [
         component: Blogs,
     },
     {
-        path: "/log-in",
+        path: "/auth/login",
         component: Login,
     },
     {
