@@ -34,7 +34,9 @@
     import { onMounted, ref } from 'vue';
     import { useToast } from "vue-toastification";
     import { useRouter } from 'vue-router';
+    import { useStore } from 'vuex';
 
+    const store = useStore();
     const router = useRouter();
     const toast = useToast();
     const email = ref('');
@@ -48,17 +50,10 @@
             password: password.value
         })
         .then(response => {
-
-            axios.get('/api/user')
-                .then(response => {
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            store.dispatch('setLoggedInUser')
 
             toast.success('Login successful');
-            // router.push('/admin');
+            router.push('/admin');
         })
         .catch(error => {
 
