@@ -17,6 +17,7 @@ const actions = {
             })
             .catch(error => {
                 console.log(error);
+                commit('setUser', null);
             });
     },
 };
