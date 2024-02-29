@@ -28,10 +28,10 @@
                     <div class="form-group mt-3">
                         <label for="password-confirmation">Password Confirmation</label>
                         <input type="password" class="form-control" id="password-confirmation" v-model="user.passwordConfirmation" required>
-                        <!-- error -->
-                        <div v-if="errors.password" class="text-danger">{{ errors.password[0] }}</div>
                     </div>
+
                     <button type="submit" class="btn btn-primary mt-3">Register</button>
+                    <p class="pt-3">Already have an account? <router-link to="/auth/login">Login Here</router-link></p>
                 </form>
                 </div>
             </div>
@@ -66,23 +66,27 @@
     });
 
     const register = async () => {
-        console.succes(user.value);
-        // await axios.post('/auth/register', {
-        //     name: user.value.name,
-        //     email: user.value.email,
-        //     password: password.value
-        // })
-        // .then(response => {
-        //     if(response.status === 200) {
-        //         toast.success('Registration successful');
-        //         router.push('/admin');
-        //     }
-        // })
-        // .catch(error => {
-        //     if(error.response.status === 422) {
-        //         errors.value = error.response.data.errors;
-        //     }
-        //     toast.error('Something went wrong!');
-        // });
+        if(user.value.password !== user.value.passwordConfirmation) {
+            errors.value = { password: ['Password and password confirmation do not match'] };
+            return;
+        }
+        await axios.post('/api/register-new-user', {
+            name: user.value.name,
+            email: user.value.email,
+            password: password.value
+        })
+        .then(response => {
+            if(response.status === 200) {
+                toast.success('Registration successful');
+                router.push('/admin');
+            }
+        })
+        .catch(error => {
+            if(error.response.status === 422) {
+                errors.value = error.response.data.errors;
+            }else{
+                toast.error('Something went wrong!');
+            }
+        });
     }
 </script>

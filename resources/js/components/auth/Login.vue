@@ -19,7 +19,10 @@
                         <!-- error -->
                         <div v-if="errors.password" class="text-danger">{{ errors.password[0] }}</div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Login</button>
+                    <div class="d-flex mt-3 justify-content-between">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <p class="mt-2 ms-2">Don't have an account? <router-link to="/auth/register">Register Here</router-link></p>
+                    </div>
                 </form>
                 </div>
             </div>

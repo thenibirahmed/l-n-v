@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,6 @@ Route::get('get-latest-post', [BlogController::class, 'getLatestPost']);
 Route::get('posts', [BlogController::class, 'getAllPosts']);
 
 Route::get('post/{id}', [BlogController::class, 'getSinglePosts']);
+
+Route::post('register-new-user', [UserController::class, 'createUser']);
 
