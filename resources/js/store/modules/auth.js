@@ -16,8 +16,8 @@ const mutations = {
 };
 
 const actions = {
-    setLoggedInUser({ commit }) {
-        axios.get('/api/user')
+    async setLoggedInUser({ commit }) {
+        await axios.get('/api/user')
             .then(response => {
                 commit('setUser', response.data);
             })

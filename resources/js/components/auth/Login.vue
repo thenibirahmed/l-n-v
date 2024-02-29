@@ -44,7 +44,7 @@
     const errors = ref([]);
 
     onMounted(() => {
-        if(store.getters.isLoggedIn) {
+        if(localStorage.getItem('user')) {
             router.push('/admin');
         }
     });
@@ -56,10 +56,11 @@
             password: password.value
         })
         .then(response => {
-            store.dispatch('setLoggedInUser')
+            store.dispatch('setLoggedInUser').then(() => {
 
-            toast.success('Login successful');
-            router.push('/admin');
+                toast.success('Login successful');
+                router.push('/admin');
+            })
         })
         .catch(error => {
 

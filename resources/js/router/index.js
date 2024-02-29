@@ -60,8 +60,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth) {
-
-        if (store.getters.isLoggedIn) {
+        if (localStorage.getItem('user')) {
             next()
         }
         else{
