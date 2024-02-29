@@ -21,10 +21,6 @@ const routes = [
     },
     {
         path: "/auth/register",
-        component: Login,
-    },
-    {
-        path: "/registration",
         component: Registration,
     },
     {
