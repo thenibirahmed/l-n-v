@@ -44,7 +44,7 @@
     const errors = ref([]);
 
     onMounted(() => {
-        if(localStorage.getItem('user')) {
+        if(store.getters.isLoggedIn) {
             router.push('/admin');
         }
     });
