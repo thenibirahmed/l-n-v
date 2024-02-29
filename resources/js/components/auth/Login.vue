@@ -43,6 +43,12 @@
     const password = ref('');
     const errors = ref([]);
 
+    onMounted(() => {
+        if(store.getters.isLoggedIn) {
+            router.push('/admin');
+        }
+    });
+
     const login = async () => {
         await axios.get('/sanctum/csrf-cookie');
         await axios.post('/login', {

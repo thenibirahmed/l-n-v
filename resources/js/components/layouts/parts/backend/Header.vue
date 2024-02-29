@@ -37,8 +37,6 @@
         axios.post('/logout')
             .then((response) => {
                 store.dispatch('setLoggedInUser')
-                toast.success('User Logged Out Successfully')
-                router.push('/auth/login')
             })
             .catch((error) => {
                 console.log(error)

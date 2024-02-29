@@ -1,3 +1,4 @@
+import store from "../store";
 import { createRouter, createWebHistory } from "vue-router";
 
 import NotFound from "../components/NotFound.vue";
@@ -19,24 +20,32 @@ const routes = [
         component: Login,
     },
     {
+        path: "/auth/register",
+        component: Login,
+    },
+    {
         path: "/registration",
         component: Registration,
     },
     {
         path: "/admin",
         component: Dashboard,
+        meta: { requiresAuth: true }
     },
     {
         path: "/add-new-post",
         component: AddNew,
+        meta: { requiresAuth: true }
     },
     {
         path: "/edit-post/:id",
         component: EditBlog,
+        meta: { requiresAuth: true }
     },
     {
         path: "/all-categories",
         component: Categories,
+        meta: { requiresAuth: true }
     },
     {
         path: "/:pathMatch(.*)*",
@@ -48,5 +57,21 @@ const router = createRouter({
     history: createWebHistory(),
     routes: routes,
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth) {
+
+        if (store.getters.isLoggedIn) {
+            next()
+        }
+        else{
+            next('/auth/login')
+        }
+
+    } else {
+        next()
+    }
+})
+
 
 export default router;
